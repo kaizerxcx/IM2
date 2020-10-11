@@ -551,14 +551,20 @@ $("input[name='profile_pic[]']").change(function () {
                 <div class="card-body"> 
                     <h3 class="card-title">{{dvd.title }}</h3> 
                     <h4 class="card-text">₱{{dvd.price}}</h4>
-                    <p class="card-text">{{dvd.items}} stocks left</p> 
-                    <button type="button" id="addcarts-{{dvd.sku}}-{{customer.employee_id}}" class="btn btn-primary">Add to Cart</button>
+                    <p class="card-text"><input type="text"  id="stocks-{{dvd.sku}}-{{customer.employee_id}}" style=" border: none;background: transparent;color: #000; text-align: center;" class="justify-content-center" value ={{dvd.items}}> stocks left</p> 
+                    <input type="button" id="addcarts-{{dvd.sku}}-{{customer.employee_id}}" class="btn btn-primary" value="Add to Cart"></input>
                         
                             <script type="text/javascript">
                                  $('#total-{{customer.employee_id}}').val("0.00");
                                   $("#addcarts-{{dvd.sku}}-{{customer.employee_id}}").unbind("click").click( function()
                                     {
-                                       
+                                        var stocks = parseInt($('#stocks-{{dvd.sku}}-{{customer.employee_id}}').val())-1;
+                                        if(stocks<1){
+                                            $("#addcarts-{{dvd.sku}}-{{customer.employee_id}}").attr("disabled", true);
+                                            $("#addcarts-{{dvd.sku}}-{{customer.employee_id}}").prop('value', 'Out of Stock');
+                                        }
+                                        $('#stocks-{{dvd.sku}}-{{customer.employee_id}}').val(stocks);
+                                        console.log(stocks);
                                        $('#carte-{{customer.employee_id}}').prepend('<tr class="pipp"><td id=forprice-{{dvd.sku}}> <input type="text" name="orderInfos[]" value={{dvd.sku}} hidden><img  class="imageThumb" style="width="150px" height="150px" src="{{image.link}}"/>'+'<p>{{dvd.title}}<p></td><td> ₱{{dvd.price}} <input type="text" id="priceInfo-{{dvd.sku}}" value ={{dvd.price}} hidden></td><td><button id="removeBtn-{{dvd.sku}}-{{customer.employee_id}}" type="button" class="btn btn-danger btn-sm removess">Remove</button></td><tr>');
                                        // $('#forprice-{{dvd.sku}}').after("<td>₱{{dvd.price}}</td>");
 

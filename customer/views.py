@@ -11,7 +11,6 @@ from order.models import Order
 # Create your views here.
 
 
-
 class CustomerIndexView(View):
     def get(self, request):
         customers = Customer.objects.all()
@@ -113,7 +112,7 @@ class CustomerRegistrationView(View):
                                       children = children, profile_pic ="/media/"+path)
                 form.save()
 
-                return redirect('customer:registration_view')
+                return redirect('customer:index_view')
            
 
             else:

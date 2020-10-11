@@ -52,7 +52,7 @@ class dashboardDVDRegisterView(View):
 
 		
 			
-			return redirect('dashboard:dvdRegistration_view')
+			return redirect('dvdReports:index_view')
 		else:
 			print(form.errors)
 			return HttpResponse('not valid')
