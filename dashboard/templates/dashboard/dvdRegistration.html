@@ -1,0 +1,435 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>DVD Reports</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+           <!-- Custom styles for this template -->
+        <link href="{% static 'dashboard.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-tagsinput.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'tools/imageDisplay.css' %}">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+       <!--  <script type="text/javascript">
+           function viewLoad(){
+             document.getElementById("loading").style.visibility = "visible";
+           }
+
+        </script>
+ -->
+        <link rel="stylesheet" type="text/css" href="bootstrap-tagsinput.css">
+      	<link rel="stylesheet" type="text/css" href="tools/imageDisplay.css">
+    </head>
+    <body style="background-color: #ffffff;">
+        <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: rgb(3,2,1);">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+                <img src="{%static 'images/1.png' %}">
+            </a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="submit">Sign Out</button>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 justify-content-center">
+                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+          <h5 class="w-100 mt-4 ml-4"><a href="{% url 'dashboard:index_view' %}" class="text-dark" style="text-decoration: none;">Dashboard</a>><a href="#" class="text-dark" style="text-decoration: none;">DVD Registration Form</a></h5>
+        <main role="main" class="col-md-9 w-100 p-10 ml-5">
+
+            <form class="ml-5 mr-1 mw-100 w-100 needs-validation" id="dvdForm" method="POST" enctype="multipart/form-data" autocomplete="off" >
+               {% csrf_token %}
+                <div>
+                    <h1 class="mb-2">DVD Registration Form</h1>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">Date Registered</label>
+                        <input type="Date" class="form-control"  id="DateField" name= "date_registered" required/>
+                       	 <script type="text/javascript">
+                            		document.getElementById('DateField').valueAsDate = new Date();
+                                console.log(new Date());
+					             	</script>
+
+                    </div>
+                   	  <div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">SKU</label>
+                        <input type="text" name="sku" class="form-control" id="sku" placeholder="SKU" readonly/>
+                        <script type="text/javascript">
+                            document.getElementById('sku').value = Math.random().toString(36).substr(2, 9);
+                        </script>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                    <label for="Genre">Genre</label>
+                    <input type="text" value="Action, Horror" data-role="tagsinput" name="Genre" id="Genre" required />
+
+                    </div>
+				    <div class="col-md-4 mb-3">
+                        <label for="validationDefault03">Title</label>
+                        <input type="text" name ="title" class="form-control" id="Title" placeholder="Title" maxlength="350" required/>
+
+                              <div class="valid-feedback" id="Titlevalid">
+                         Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="Titleinvalid">
+                        Please provide a valid Title.
+                      </div>
+
+
+                      <script type="text/javascript">
+                          $("#Title" ).bind('input propertychange',function() {
+                         'use strict';
+
+                         if($.isNumeric($('#Title').val()) || $.trim($('#Title').val()) == ''){
+                            $('#Titleinvalid').show();
+                             $('#Titlevalid').hide();
+                             $('#Title').addClass('is-invalid');
+                              $('#Title').removeClass('is-valid');
+
+                                 $("form").submit(function(e){
+                                   e.preventDefault();
+                                  });
+
+                        }
+                        else{
+
+                          $('#Titlevalid').show();
+                           $('#Titleinvalid').hide();
+                             $('#Title').addClass('is-valid');
+                              $('#Title').removeClass('is-invalid');
+
+                           $('input[type=submit]', this).removeAttr('disabled', 'disabled');
+                                 $('form').unbind('submit');
+
+                        }
+                      });
+
+                      </script>
+
+                    </div>
+                </div>
+                <div class="form-row">
+     				<div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">Release Date</label>
+                        <input name="released_date" type="Date" class="form-control" id="DateField" required />
+
+
+                    </div>
+                   	  <div class="col-md-4 mb-3 mt-2">
+                     <label for="validationDefault01">Director</label>
+                        <input  type="text" name="director" class="form-control" id="director" placeholder="Director" maxlength="255" required />
+
+                          <div class="valid-feedback" id="directorvalid">
+                         Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="directorinvalid">
+                        Please provide a valid director.
+                      </div>
+
+
+                      <script type="text/javascript">
+                          $("#director" ).bind('input propertychange',function() {
+                         'use strict';
+
+                         if($.isNumeric($('#director').val()) || $.trim($('#director').val()) == ''){
+                            $('#directorinvalid').show();
+                             $('#directorvalid').hide();
+                             $('#director').addClass('is-invalid');
+                              $('#director').removeClass('is-valid');
+
+                                 $("form").submit(function(e){
+                                   e.preventDefault();
+                                  });
+
+                        }
+                        else{
+
+                          $('#directorvalid').show();
+                           $('#directorinvalid').hide();
+                             $('#director').addClass('is-valid');
+                              $('#director').removeClass('is-invalid');
+
+                           $('input[type=submit]', this).removeAttr('disabled', 'disabled');
+                                 $('form').unbind('submit');
+
+                        }
+                      });
+
+                      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+                 <div class="form-row">
+     				<div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">Cast</label>
+                        		<!--source: https://www.itsolutionstuff.com/post/simple-add-remove-input-fields-dynamically-using-jquery-with-bootstrapexample.html-->
+
+
+      					  <div class="input-group control-group after-add-more">
+       						   <input type="text" name="cast[]" id="cast" class="form-control" placeholder="Firstname, Lastname" maxlength="500" required>
+        					 <div class="input-group-btn">
+         					   <button class="btn btn-success add-more" type="button">
+         					   	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  									<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+										  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+										</svg>
+         					   </button>
+
+
+                    </div>
+                     <div class="valid-feedback" id="castvalid">
+                         Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="castinvalid">
+                        Please provide a valid cast.
+                      </div>
+
+
+                      <script type="text/javascript">
+                          $("#cast" ).bind('input propertychange',function() {
+                         'use strict';
+
+                         if($.isNumeric($('#cast').val()) || $.trim($('#cast').val()) == ''){
+                            $('#castinvalid').show();
+                             $('#castvalid').hide();
+                             $('#cast').addClass('is-invalid');
+                              $('#cast').removeClass('is-valid');
+
+                                 $("form").submit(function(e){
+                                   e.preventDefault();
+                                  });
+
+                        }
+                        else{
+                          $('#castvalid').show();
+                           $('#castinvalid').hide();
+                             $('#cast').addClass('is-valid');
+                              $('#cast').removeClass('is-invalid');
+
+                                $('input[type=submit]', this).removeAttr('disabled', 'disabled');
+                                 $('form').unbind('submit');
+                        }
+                      });
+
+                      </script>
+
+       					   </div>
+      					  </div>
+
+     </div>
+        </div>
+
+	      <div class="form-row">
+                      <div class="col-md-2 mb-3 mt-2">
+                        <label for="validationDefault01">Price</label>
+                        <input name="price" class="form-control "  id="price" required novalidate/>
+                          <div class="valid-feedback" id="pricevalid">
+                         Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="priceinvalid">
+                         Please provide a valid price.
+                      </div>
+                      <script type="text/javascript">
+                          $("#price" ).bind('input propertychange',function() {
+                         'use strict';
+
+                        if(isNaN($('#price').val()) || $.trim($('#price').val()) == '' || $.trim($('#price').val()) < 0 ){
+                            $('#priceinvalid').show();
+                             $('#pricevalid').hide();
+                             $('#price').addClass('is-invalid');
+                              $('#price').removeClass('is-valid');
+
+                                 $("form").submit(function(e){
+                                   e.preventDefault();
+                                  });
+
+                        }
+                        else{
+                          $('#pricevalid').show();
+                           $('#priceinvalid').hide();
+                             $('#price').addClass('is-valid');
+                              $('#price').removeClass('is-invalid');
+
+                                $('input[type=submit]', this).removeAttr('disabled', 'disabled');
+                                 $('form').unbind('submit');
+                        }
+                      });
+
+                      </script>
+                    </div>
+                      <div class="col-md-2 mb-3 mt-2">
+                        <label for="validationDefault01">No. of Items</label>
+                        <input name="items" type="nunber" class="form-control"  id="stocks" required />
+                        <div class="valid-feedback" id="stocksvalid">
+                         Looks good!
+                        </div>
+                        <div class="invalid-feedback" id="stocksinvalid">
+                         Please provide a valid items.
+                      </div>
+                        <script type="text/javascript">
+                            $("#stocks" ).bind('input propertychange',function() {
+                         'use strict';
+
+                                if(isNaN($('#stocks').val()) || $.trim($('#stocks').val()) == '' || $.trim($('#stocks').val()) < 0 ){
+                            $('#stocksinvalid').show();
+                             $('#stocksvalid').hide();
+                             $('#stocks').addClass('is-invalid');
+                              $('#stocks').removeClass('is-valid');
+
+                                 $("form").submit(function(e){
+                                   e.preventDefault();
+                                  });
+
+                        }
+                        else{
+                          $('#stocksvalid').show();
+                           $('#stocksinvalid').hide();
+                             $('#stocks').addClass('is-valid');
+                              $('#stocks').removeClass('is-invalid');
+
+                                $('input[type=submit]', this).removeAttr('disabled', 'disabled');
+                                 $('stocks').unbind('submit');
+                        }
+                      });
+                        </script>
+                    </div>
+
+                </div>
+
+                 <div class="form-row">
+                    <div class="col-md-4 mb-3 mt-2">
+						 <label for="files">Images</label>
+						 <input type="file" id="files" name="files[]" multiple accept="image/*" required />
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+                </div>
+                <button class="btn btn-primary" id = "submit" type="submit">Register</button>
+            </form>
+        </main>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+      {% block javascript %}
+       <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js/dashboard/tools/functions.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dashboard/tools/bootstrap-tagsinput.js' %}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>feather.replace()</script>
+
+
+        <script>
+
+   $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+  </script>
+
+<script type="text/javascript">
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+/*
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('ml-5 mr-1 mw-100 w-100 needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+
+        form.addEventListener('submit', function(event) {
+
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+*/
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+      {% endblock %}
+
+
+    </body>
+</html>

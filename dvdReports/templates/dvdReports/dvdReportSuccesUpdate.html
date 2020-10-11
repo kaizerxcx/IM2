@@ -1,0 +1,619 @@
+{% load static %}
+{% load dvd_extras %}
+
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>DVD Reports</title>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{% static 'dashboard.css' %}" rel="stylesheet">
+
+         <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-tagsinput.css' %}">
+      	<link rel="stylesheet" type="text/css" href="{% static 'tools/imageDisplay.css' %}">
+
+        <script type="text/javascript">
+
+           function viewLoad(){
+             document.getElementById("loading").style.visibility = "visible";
+           }
+
+        </script>
+    </head>
+    <body style="background-color: rgb(3,2,1);">
+
+        <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: rgb(3,2,1);">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+                <img src="{%static 'images/1.png' %}">
+            </a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="submit">Sign Out</button>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky" style="background-color: rgb(3,2,1);">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link  text-primary" href="dashboard.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home text-primary">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                    Dashboard 
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-primary active font-weight-bolder" href="dvdReport.html">
+                                    <img src="{% static 'images/dvdIcon.png' %}">
+                                    DVD Report
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-primary" href="customerReport.html">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users text-primary">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    Customers
+                                </a>
+                            </li>
+
+
+
+
+
+
+
+
+<
+
+
+
+
+
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                    </svg>
+                                    Reports
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                        <polyline points="2 17 12 22 22 17"></polyline>
+                                        <polyline points="2 12 12 17 22 12"></polyline>
+                                    </svg>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"> <span>Saved reports</span> <a class="d-flex align-items-center text-muted" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                            </a> </h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    Current month
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    Last quarter
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    Social engagement
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                    Year-end sale
+                                </a>
+                            </li>
+                        </ul>  -->
+                    </div>
+                </nav>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+
+
+
+
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="exampleModalLongTitle">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-success">
+          <h5>  Information Succesfully Updated!</h5>
+</div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+                        <h1 class="h2 text-white font-weight-bolder">DVD Reports</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0" id="export">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div class="form-row">
+                            <div class="col-sm-3-4 mb-3 mt-2 text-light ">
+                                <label for="min">From Date Registered</label>
+                                <input type="text" class="form-control" id="min" autocomplete="off"/>
+                            </div>
+                            <div class="col-sm-3-4 mb-3 mt-2 text-light ">
+                                <label for="max">To Date Registered</label>
+                                <input type="text" class="form-control" id="max" autocomplete="off"/>
+                            </div>
+                            <br>
+                        </div>
+                        <table class="table text-light " id="dvdTable">
+                            <thead>
+                                <tr>
+                                    <th>Date Registered</th>
+                                    <th>Genre</th>
+                                    <th>Title</th>
+                                    <th>Released Date</th>
+                                    <th>Price</th>
+                                    <th>No. of items</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    {% for dvd in dvds %}
+                       
+                                <tr>
+                                <td>{{dvd.date_registered|date:"SHORT_DATE_FORMAT"}}</td>
+                                        <td>{{ dvd.genre }}</td>
+                                        <td>{{ dvd.title }}</td>
+                                        <td>{{dvd.released_date|date:"SHORT_DATE_FORMAT"}}</td>
+                                        <td>{{ dvd.price }}</td>
+                                        <td>{{ dvd.items }}</td>
+                                        <td>
+     
+                                            <button class="btn btn-lg mr-1" data-toggle="modal" data-target="#newModal-{{dvd.sku}}" id="toupdate">
+                                                <svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-three-dots text-light" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                </svg>
+                                            </button>
+                                            <div class="modal fade" id="newModal-{{dvd.sku}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="exampleModalScrollableTitle">{{dvd.title}}'s Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+      <div class="modal-body text-dark">
+         <form id="updateForm" method="post" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+         <div class="form-row">
+                    <div class="col-md-5 mb-4 mt-2">
+                        <label for="validationDefault01">Date Registered</label>
+                        <input type="Date" name="date_registered" class="form-control"  id="DateField" value="{{dvd.date_registered|date:'c'}}">
+                       	 <script type="text/javascript">
+                            		var dd = document.getElementById('DateField').value
+                                    // console.log(dd);         
+						</script>
+                    </div>
+                   	  <div class="col-md-5 mb-4 mt-2">
+                      <label for="validationDefault01">SKU</label>
+                        <input type="text" name="sku" value="{{dvd.sku}}" class="form-control" placeholder="SKU" readonly/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                   	  <div class="col-md-5 mb-4 mt-2">
+                      <label for="Genre">Genre</label>
+                    <input type="text" value="{{dvd.genre}}"  data-role="tagsinput" name="Genre" id="Genre" autocomplete="off"/>
+                    </div>
+                   	  <div class="col-md-5 mb-4 mt-2">
+                     <label for="validationDefault03">Title</label>
+                        <input  type="text" name="title" class="form-control" id="validationDefault03" placeholder="Title"required 
+                        value="{{dvd.title}}" />
+                    </div>
+                   	
+                </div>
+
+                   <div class="form-row">
+                   	  <div class="col-md-5 mb-4 mt-2">
+                        <label for="validationDefault01">Release Date</label>
+                        <input type="Date" name="released_date" value="{{dvd.released_date|date:'c'}}" class="form-control" id="releasedDate" required/>
+                         	
+                    </div>
+                   	  <div class="col-md-5 mb-4 mt-2">
+                    <label for="validationDefault01">Director</label>
+                        <input type="text" name="director" value="{{dvd.director}}" class="form-control" id="validationDefault01" placeholder="Director" required/>
+                    </div>
+                   	
+                </div>
+
+
+   				<div class="form-row">
+                   	  <div class="col-md-5 mb-4 mt-2">
+                   	  	  <label for="validationDefault01">Cast</label>
+
+
+            
+
+    
+
+
+
+            {% for cast in casts|in_category:dvd.sku %}   
+
+                        {% if forloop.first %}
+                    
+                     <div class="input-group control-group after-add-more">
+                               <input type="text" name="cast[]" id="cast" class="form-control" placeholder="Firstname, Lastname" value="{{cast.fullname}}">
+                             <div class="input-group-btn"> 
+                               <button class="btn btn-success add-more" type="button">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                          <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                        </svg>
+                               </button>
+                           </div>
+                          </div>
+
+            {% else %}
+                       
+                      <div class="control-group input-group" style="margin-top:10px" id="inputFormRow">
+                   <input type="text" id="cast" value="{{cast.fullname}}" name="cast[]" class="form-control" placeholder="Firstname, Lastname">
+           <div class="input-group-btn"> 
+            <button class="btn btn-danger remove" type="button" id=removeRow>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+           <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+          </svg>
+             </button>
+            </div>
+                 </div>
+                {% endif %}
+
+             {% endfor %} 
+
+
+                    </div>  
+
+                      <div class="col-md-5 mb-4 mt-2">
+                        <label for="validationDefault01">Price</label>
+                        <input type="nunber" name="price" class="form-control"  id="price" required value="{{dvd.price}}" />
+                    </div>
+                  
+                </div>
+
+ 				<div class="form-row">
+                   	  <div class="col-md-5 mb-4 mt-2">
+                        <label for="validationDefault01">No. of Items</label>
+                        <input type="nunber" name="items" class="form-control"  id="stocks" required value="{{dvd.items}}" />
+                    </div>
+                   	     
+                            
+                       
+
+   <div class="col-md-5 mb-4 mt-2">
+                       
+                   
+
+                        <script type="text/javascript">
+              
+ </script>
+
+
+
+
+
+
+
+                    
+                {% for image in images|in_filter:dvd.sku %}   
+
+
+                        {% if forloop.counter <= 1 %}
+                          <label for="files">Images</label>  
+                           <input type="file" id="files-{{dvd.sku}}" name="fileses"  multiple />   
+                           <input type="text" name="img[]" id="img"  value="{{dvd.sku}}"  data-id="{{dvd.sku}}" hidden />
+               
+
+                           
+                        <span class="pip"><img  class="imageThumb" src="{{image.link}}"/><br/><span class="removes">
+                                <input type="text"  name="imageLink[]" value="{{image.link}}" hidden>
+                         <svg width="2em" height="2em" viewbox="0 0 16 16" class="bi bi-trash text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                "<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></span></span> 
+
+
+
+
+
+                       {% else  %}
+                        
+                   <span class="pip"><img  class="imageThumb" src="{{image.link}}"/><br/><span class="removes"> 
+                         <input type="text"  name="imageLink[]" value="{{image.link}}" hidden>
+                    <svg width="2em" height="2em" viewbox="0 0 16 16" class="bi bi-trash text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                "<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></span></span>  
+                                        
+
+                             <!--  <input type="text" id="img"  value="{{dvd.sku}}"  data-id="{{dvd.sku}}"/> -->
+                    {% endif %}
+                   
+             {% endfor %} 
+
+          
+                    </div>
+                  
+                  
+                </div>
+
+           </div>
+
+            
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" id = "btnUpdate" name = "btnUpdate"  class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+                         
+                                        
+                                        <button class="btn btn-lg"  data-toggle="modal" data-target="#deleteModal">
+                                            <svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-trash text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </button>
+
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark" id="exampleModalLongTitle">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-danger">Are you sure you want to delete this item?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </form>
+
+                                    </td>
+                                </tr>
+
+    {% endfor %}
+                   
+                            </tbody>
+                                }
+                        </table>
+                </main>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {% block javascript %}
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.js' %}"></script>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'jqueryui/jquery-ui.css' %}">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+        <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'tools/functions.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap-tagsinput.js' %}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+        <script>
+
+   $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+  </script>
+
+
+
+        <script type="text/javascript">
+      $(document).ready(function () { 
+        
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var min = $('#min').datepicker("getDate");
+                    var max = $('#max').datepicker("getDate");
+										var startDate = new Date(data[0])
+                    if (min == null && max == null) { return true; }
+                    if (min == null && startDate <= max) { return true;}
+                    if(max == null && startDate >= min) {return true;}
+                    if (startDate <= max && startDate >= min) { return true; }
+                    return false;
+                }
+            );
+
+      
+            $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true , dateFormat:"mm/dd/yy"});
+            $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true, dateFormat:"mm/dd/yy" });
+            var table = $('#dvdTable').DataTable({
+                   
+    buttons: [
+        {
+            extend: 'excelHtml5',
+            text: '<svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-file-earmark-arrow-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+'                                <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>'+
+'                                 <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>'+
+'                                 <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z"/>'+
+'                                </svg>'+'Export',
+    
+            className:'btn btn-sm btn-outline-secondary export-excel',
+            exportOptions: {
+             columns: [ 0, 1, 2, 3, 4, 5 ]
+            }
+        }
+    ]
+} ); 
+   table.buttons(0,null).container().appendTo("#export");        
+
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#min, #max').change(function () {
+                table.draw();
+            });
+        });
+
+
+
+
+
+// $(".removes").click(function(e){
+//               $(e.target).remove();
+//                 console.log("remove nana");
+//             $(this).parent(".pip").remove();
+      
+
+// });
+
+
+
+$(document).on('click', '.removes', function (e) {
+             
+                 $(this).parent(".pip").remove();
+    });
+
+
+
+
+
+
+$('#myModal').modal('show')
+
+                    
+</script>
+
+    
+        {% endblock %}
+
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>feather.replace()</script>
+    </body>
+</html>

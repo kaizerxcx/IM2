@@ -1,0 +1,35 @@
+.img-circle {
+/*  border-radius: 50%;
+*/border: 1px solid white;
+
+}
+img.img-circle {
+
+}
+.imgthumb {
+ left:0;
+ text-align:center;
+ width:100%;
+ background:#f2f3f4;
+ bottom:0;
+ padding:2px 0;
+}
+.img-thumbnail {
+border-radius: 0;
+display:inline-block;
+background:#ffffff;
+padding:1px;
+ }
+.img-thumbnail > div {
+display:inline-block;
+overflow: hidden;
+height: 140px;
+width: 140px;
+border: 8px solid grey;
+
+/*border-radius:50%;
+*/}
+
+.file-upload {
+    display: none;
+}

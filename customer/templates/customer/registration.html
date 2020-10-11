@@ -1,0 +1,305 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Customer Registration</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+           <!-- Custom styles for this template -->
+        <link href="{% static 'dashboard.css' %}" rel="stylesheet">
+
+         <link rel="stylesheet" href="{% static 'customer/css/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+       <!--  <script type="text/javascript">
+           function viewLoad(){
+             document.getElementById("loading").style.visibility = "visible";
+           }
+
+        </script>
+ -->
+        <link rel="stylesheet" type="text/css" href="bootstrap-tagsinput.css">
+      	<link rel="stylesheet" type="text/css" href="tools/imageDisplay.css">
+
+                <link href="{% static 'customer/css/profile.css' %}" rel="stylesheet">
+
+    </head>
+    <body style="background-color: #ffffff;">
+        <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: rgb(3,2,1);">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+                <img src="{%static 'images/1.png' %}">
+            </a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="submit">Sign Out</button>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 justify-content-center">
+                    <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+          <h5 class="w-100 mt-4 ml-4"><a href="{% url 'dashboard:index_view' %}" class="text-dark" style="text-decoration: none;">Dashboard</a>><a href="#" class="text-dark" style="text-decoration: none;">Customer Registration Form</a></h5>
+        <main role="main" class="col-md-9 w-100 p-10 ml-5">
+
+            <form class="ml-5 mr-1 mw-100 w-100 needs-validation" id="dvdForm" method="POST" enctype="multipart/form-data" autocomplete="off" >
+               {% csrf_token %}
+                <div class="form-row ">
+                    <h2 class="mb-2 ">Customer Registration Form</h2>
+
+                </div>
+                <div class="form-row ">
+                    <div class="col-md-4 mb-3 mt-4">
+                                                    
+                            <div class="img-thumbnail img-circle">
+                              <div style="position: relative; padding: 0; cursor: pointer;" >
+                                <img  class="img-circle profile-pic" src="{%static 'customer/images/profile.png' %}" style="width: 120px; height: 120px;  max-height: 1200px; border-color: white;" >
+                                <span class="imgthumb" style="position: absolute; ">  <i class="fa fa-camera upload-button"></i></span>
+                                 <input name="profile_pic" class="file-upload" type="file" accept="image/*"/>
+                              </div>
+                            </div>
+
+                            </div>
+                    </div>
+                   
+                </div>
+                  <div class="form-row">
+                       <div class="col-md-4 mb-3 mt-2">
+                               
+                        <label for="validationDefault01">Date Registered</label>
+                        <input type="Date" class="form-control"  id="DateField" name= "date_registered" required readonly="" />
+                         <script type="text/javascript">
+                                document.getElementById('DateField').valueAsDate = new Date();
+                                console.log(new Date());
+                        </script>
+
+                      
+                    </div>
+
+
+                  </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" name ="firstname" class="form-control" id="Title" placeholder="Firstname" maxlength="100" required/>
+
+                    </div>
+				    <div class="col-md-4 mb-3">
+                        <label for="Middlename">Middlename</label>
+                        <input type="text" name ="middlename" class="form-control" id="Middlename" placeholder="Middlename" maxlength="100" />
+
+                    </div>
+
+                      <div class="col-md-4 mb-3">
+                    <label for="Lastname">Lastname</label>
+                    <input type="text" name ="lastname" class="form-control" id="Lastname" placeholder="Lastname" maxlength="100" />
+
+                    </div>
+                </div>
+                <div class="form-row">
+     				<div class="col-md-4 mb-3 mt-2">
+                        <label for="Lastname">Address</label>
+                    <input type="text" name ="address" class="form-control" id="Address" placeholder="Street, Brgy, City, Prov, Zip, Country" maxlength="355" autocomplete="off" />
+
+
+                    </div>
+                   	  <div class="col-md-4 mb-3 mt-2">
+                      <label for="validationDefault01">Birth Date</label>
+                        <input name="birthdate" type="Date" class="form-control" id="DateField" required />
+
+                    </div>
+                </div>
+                 <div class="form-row">
+     				<div class="col-md-4 mb-3 mt-2">
+                        <label for="status">Status</label>
+                          <div class="form-group">
+                          <select name="status" class="custom-select" id="forstatus"  required>
+                            <option value="1">Single</option>
+                            <option value="2">Married</option>
+                            <option value="3">Widow/er</option>
+                            <option value="4">Divorced</option>
+                          </select>
+                          <div class="invalid-feedback">Example invalid custom select feedback</div>
+                        </div>
+                       	</div>
+
+
+                 <div class="col-md-4 mb-3 mt-2">
+                      <label for="validationDefault01">Gender</label>
+                               <div class="form-group">
+                          <select  name="gender" class="custom-select" id="forgender" required>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                          </select>
+                          <div class="invalid-feedback">Example invalid custom select feedback</div>
+                        </div>
+                        
+                                   </div>
+                    </div>
+          </div>
+     </div>
+
+
+
+
+	                 <div class="form-row">
+                      <div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">Spouse's Name</label>
+                        <input type="text" name="spouse_name" class="form-control "  id="spouse_name" placeholder="Spouse's Name" maxlength="500" value="NA" />
+                          
+                    </div>
+                      <div class="col-md-4 mb-3 mt-2">
+                        <label for="validationDefault01">Spouse's Occupation</label>
+                        <input name="spouse_occupation" type="text" class="form-control"  id="spouse_occupation"
+                        placeholder="Spouse's Occupation"  maxlength="500" value="NA" />
+                      
+                    </div>
+
+                </div>
+
+                 <div class="form-row">
+                    <div class="col-md-2 mb-3 mt-2">
+						 <label for="children">No. of Children</label>
+           <input name="children" type="number" class="form-control"  id="children"
+                        minlength="0" maxlength="5000" value="0"  required="" />
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+                </div>
+                <button class="btn btn-primary" id = "submit" type="submit">Register</button>
+            </form>
+        </main>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+      {% block javascript %}
+       <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js/dashboard/tools/functions.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dashboard/tools/bootstrap-tagsinput.js' %}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>feather.replace()</script>
+
+
+        <script>
+
+   $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+  </script>
+
+<script type="text/javascript">
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+/*
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('ml-5 mr-1 mw-100 w-100 needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+
+        form.addEventListener('submit', function(event) {
+
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+*/
+
+
+ $(document).ready(function() {
+
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+           $(".file-upload").click();
+        });
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+      {% endblock %}
+
+
+    </body>
+</html>
