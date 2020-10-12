@@ -7,6 +7,21 @@ from django.core.files.storage import FileSystemStorage
 # from dvdReports.urls import *
 # Create your views here.
 
+
+class welcomeView(View):
+	def get(self, request):
+		# dvds = DVD.objects.all()
+		# for dvd in dvds:
+		# 	print(dvd.title)
+		return render(request,'dashboard/landingPage.html')
+
+class loginfailView(View):
+	def get(self, request):
+		# dvds = DVD.objects.all()
+		# for dvd in dvds:
+		# 	print(dvd.title)
+		return render(request,'dashboard/SignInFailed.html')	
+		
 class dashboardView(View):
 	def get(self, request):
 		# dvds = DVD.objects.all()

@@ -1,0 +1,454 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block headerinclude %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Welcome</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'carousel.css' %}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--   <link rel = "icon" href =  "images/1.png"type = "image/x-icon">  -->
+    {% endblock headerinclude %}
+</head>
+
+    <body style="background-color: rgb(3,2,1);">
+        {% block content %}
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-lg sha" style="background-color: rgb(3,2,1);">
+            <a class="navbar-brand text-primary font-weight-bold" href="#">
+                <img src="{% static 'images/1.png' %}">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  
+                    
+
+                </ul>
+             <!--    <form class="form-inline mt-2 mt-md-0"> -->
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" data-toggle="modal" data-target="#loginModal" type="button">Sign In</button>
+               <!--  </form> -->
+                
+            </div>
+        </nav>
+
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+         
+            <div class="form-group">
+              <input type="text" class="form-control" id="username" placeholder="Your username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Your password...">
+            </div>
+            <button type="button" id="loginn" class="btn btn-primary btn-block btn-round" onclick="check()">Sign In</button>
+
+
+
+      </div>
+    </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">&copy Movie House Automate 2020</div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    
+   
+
+function check(){
+      
+      var username = $('#username').val();
+      var password = $('#password').val();
+     if(username == 'admin' && password == 'admin')
+     {
+       
+       window.location.replace("{% url 'dashboard:index_view' %}");
+
+
+
+     }
+     else
+     {
+        window.location.replace("{% url 'dashboard:loginfail_view' %}");
+
+     }
+
+
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="About" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+
+                         <h4 class="modal-title text-center" id="myModalLabel">About Us</h4>
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                   <form role="form" action="" method="post" class="About">
+                               <fieldset>
+                                    <div class="form-top"> 
+                                        <div class="form-top-left">
+
+                                                <p class="story-quote">
+
+                                                    " Success is finding satisfaction in giving a little more than you take."
+
+                                                 </p>
+
+                                        </div>
+                                         <div class="row">
+
+                                            <div class="col-md-4">
+
+                                                <div class="icon-box">
+
+                                                    <i class="material-icons">favorite</i>
+
+                                                        <h4>Simple To Use</h4>
+
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.
+
+                                                        </p>
+
+                                                </div>
+
+                                            </div>
+
+                                                <div class="col-md-4">
+
+                                                    <div class="icon-box">
+
+                                                            <i class="material-icons">flash_on
+                                                            </i>
+
+                                                                <h4>Powerful</h4>
+
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
+
+                                                    </div>
+
+                                                </div>
+
+                                                    <div class="col-md-4">
+
+                                                        <div class="icon-box">
+
+                                                            <i class="material-icons">settings</i>
+
+                                                                <h4>Easy To Customize</h4>
+
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!--======================================== 
+
+           Contact
+
+    ========================================-->
+
+
+   <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+
+                         <h4 class="modal-title text-center" id="myModalLabel">Contact Us</h4>
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                   <form role="form" action="" method="post" class="contact">
+                               <fieldset>
+                                    <div class="form-top"> 
+                                        <div class="form-top-left">
+
+                                               <div class="team-social">
+                                                    <center>
+                                                        <h3>Reach us through our social media platforms!</h3>
+                                                    </center> 
+                                                    <ul class="liste-unstyled">
+
+                                                        <li><a href="#facebook"><i class="fa fa-facebook"></i> - John Doe Ph</a></li>
+
+                                                        <li><a href="#twitter"><i class="fa fa-twitter"></i> - @johndoe</a></li>
+
+                                                        <li><a href="#linkedin"><i class="fa fa-linkedin"></i> -  - @johndoe</a></li>
+
+                                                        <li><a href="#instagram"><i class="fa fa-instagram"></i> - @johndoe</a></li>
+
+                                                    </ul>
+
+
+                                                 </div>
+                                        </div>
+                                         <div class="row">
+
+                                            <div class="col-md-4">
+
+                                                <div class="icon-box">
+
+                                                    <i class="material-icons">favorite</i>
+
+                                                        <h4>Simple To Use</h4>
+
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.
+
+                                                        </p>
+
+                                                </div>
+
+                                            </div>
+
+                                                <div class="col-md-4">
+
+                                                    <div class="icon-box">
+
+                                                            <i class="material-icons">flash_on
+                                                            </i>
+
+                                                                <h4>Powerful</h4>
+
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
+
+                                                    </div>
+
+                                                </div>
+
+                                                    <div class="col-md-4">
+
+                                                        <div class="icon-box">
+
+                                                            <i class="material-icons">settings</i>
+
+                                                                <h4>Easy To Customize</h4>
+
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </fieldset>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" >
+                    <div class="carousel-caption d-none d-md-block text-left">
+                        <h1 class="font-weight-bolder">Unlimited movies, TV shows, and more.</h1>
+                        <p>Watch anywhere. Cancel anytime.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> 
+                    </div>
+                    <img class="first-slide shadow-lg" src="{% static 'images/background.jpg' %}" alt="First slide">
+                    <div class="container">
+</div>
+                </div>
+                <div class="carousel-item">
+                    <img class="second-slide" src="{% static 'images/background.jpg' %}" alt="Second slide">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1 class="font-weight-bolder">Enjoy on your TV.</h1>
+                            <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+                            <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="third-slide" src="{% static 'images/background.jpg' %}" alt="Third slide">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-md-block text-right">
+                            <h1 class="font-weight-bolder">Download your shows to watch offline.</h1>
+                            <p>Save your favorites easily and always have something to watch.</p>
+                          <!--   <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+        </div>
+        <!-- Marketing messaging and featurettes
+    ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+        <div class="container marketing">
+            <!-- Three columns of text below the carousel -->
+            <div class="row">
+                <div class="col-lg-4 " style="background-color: rgb(3,2,1);">
+                    <img class="rounded-circle" src="{% static 'images/background.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+                    <h2 class="text-white">Heading</h2>
+                    <p class="text-white">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="{% static 'images/background.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+                    <h2 class="text-white">Heading</h2>
+                    <p class="text-white">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <img class="rounded-circle" src="{% static 'images/background.jpg' %}" alt="Generic placeholder image" width="140" height="140">
+                    <h2 class="text-white">Heading</h2>
+                    <p class="text-white">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+            <!-- START THE FEATURETTES -->
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" style="width: 500px; height: 500px;" src="{% static 'images/background.jpg' %}" data-holder-rendered="true">
+                </div>
+            </div>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="featurette-image img-fluid mx-auto" src="{% static 'images/background.jpg' %}" data-holder-rendered="true" style="width: 500px; height: 500px;">
+                </div>
+            </div>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" src="{% static 'images/background.jpg' %}" data-holder-rendered="true" style="width: 500px; height: 500px;">
+                </div>
+            </div>
+            <hr class="featurette-divider">
+            <!-- /END THE FEATURETTES -->
+            <!-- FOOTER -->
+            <footer>
+                <p class="float-right"><a href="#">Back to top</a></p>
+                <p>© 2017 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+            </footer>
+        </div>
+
+        <!-- /.container -->
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {% block footerinclude %}
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="{% static 'assets/js/holder.min.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        {% endblock footerinclude %}   
+        {% endblock content %}
+ 
+
+    </body>
+</html>

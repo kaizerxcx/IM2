@@ -38,10 +38,15 @@
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
                 <img src="{%static 'images/1.png' %}">
             </a>
-            <ul class="navbar-nav px-3">
+           <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="submit">Sign Out</button>
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="button" onclick="out()">Sign Out</button>
                 </li>
+                 <script type="text/javascript">
+                function out(){
+                     window.location.replace("{% url 'dashboard:welcome_view' %}");
+                }
+            </script>
             </ul>
         </nav>
         <div class="container-fluid">
@@ -519,7 +524,7 @@ $("input[name='profile_pic[]']").change(function () {
                        <strong>Total</strong>
                     </td>
                     <td>
-                        <input class="font-weight-bold" type="text" name="total" id="total-{{customer.employee_id}}" readonly="" value="0.0">
+                        <input class="font-weight-bold" type="text" name="total" id="total-{{customer.employee_id}}" readonly="" value="0.0" style=" border: none;background: transparent;color: #000; font-weight: bolder;">
 
 
                     </td>

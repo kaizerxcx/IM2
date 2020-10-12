@@ -10,14 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Welcome!</title>
+    <title>Welcome</title>
     
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
     
     <!-- Custom styles for this template -->
     <link href="{% static 'carousel.css' %}" rel="stylesheet">
-
     <!--   <link rel = "icon" href =  "images/1.png"type = "image/x-icon">  -->
     {% endblock headerinclude %}
 </head>
@@ -35,30 +34,91 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                   
-                    <li class="form-inline mt-2 mt-md-0">
-                            <button type="button" class="btn my-2 my-sm-0 btn-primary font-weight-bolder" data-toggle="modal" data-target="#About">About Us</button>
-                    </li>
-
-                    <li class="form-inline mt-2 mt-md-0">
-                            <button type="button" class="btn my-2 my-sm-0 btn-primary font-weight-bolder" data-toggle="modal" data-target="#contact">Contact Us
-                            </button>
-                    </li>
-
+                    
 
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
-                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" type="submit">Sign In</button>
+                    <button class="btn my-2 my-sm-0 btn-primary font-weight-bolder" data-toggle="modal" data-target="#loginModal" type="button">Sign In</button>
                 </form>
                 
             </div>
         </nav>
 
 
- <!--======================================== 
 
-           START
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
+          <div class="alert alert-danger" role="alert">
+                Failed to Sign in! Please check your credentials and try again.
+        </div>
+        </div>
+        <div class="d-flex flex-column text-center">
+         
+            <div class="form-group">
+              <input type="text" class="form-control" id="username" placeholder="Your username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Your password...">
+            </div>
+            <button type="button" id="loginn" class="btn btn-primary btn-block btn-round" onclick="check()">Sign In</button>
+         
 
-    ========================================-->
+<script type="text/javascript">
+    
+   
+
+function check(){
+      
+      var username = $('#username').val();
+      var password = $('#password').val();
+     if(username == 'admin' && password == 'admin')
+     {
+       
+       window.location.replace("{% url 'dashboard:index_view' %}");
+
+
+
+     }
+     else
+     {
+        window.location.replace("{% url 'dashboard:loginfail_view' %}");
+
+     }
+
+
+}
+
+
+</script>
+
+      </div>
+    </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="signup-section">&copy Movie House Automate 2020</div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="modal fade" id="About" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
         <div class="modal-dialog" role="document">
@@ -153,117 +213,6 @@
 
 
 
-    <!--======================================== 
-
-           Contact
-
-    ========================================-->
-
-
-   <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-        <div class="modal-dialog" role="document">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-
-                         <h4 class="modal-title text-center" id="myModalLabel">Contact Us</h4>
-
-                </div>
-
-
-                <div class="modal-body">
-
-
-                   <form role="form" action="" method="post" class="contact">
-                               <fieldset>
-                                    <div class="form-top"> 
-                                        <div class="form-top-left">
-
-                                               <div class="team-social">
-                                                    <center>
-                                                        <h3>Reach us through our social media platforms!</h3>
-                                                    </center> 
-                                                    <ul class="liste-unstyled">
-
-                                                        <li><a href="#facebook"><i class="fa fa-facebook"></i> - John Doe Ph</a></li>
-
-                                                        <li><a href="#twitter"><i class="fa fa-twitter"></i> - @johndoe</a></li>
-
-                                                        <li><a href="#linkedin"><i class="fa fa-linkedin"></i> -  - @johndoe</a></li>
-
-                                                        <li><a href="#instagram"><i class="fa fa-instagram"></i> - @johndoe</a></li>
-
-                                                    </ul>
-
-
-                                                 </div>
-                                        </div>
-                                         <div class="row">
-
-                                            <div class="col-md-4">
-
-                                                <div class="icon-box">
-
-                                                    <i class="material-icons">favorite</i>
-
-                                                        <h4>Simple To Use</h4>
-
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.
-
-                                                        </p>
-
-                                                </div>
-
-                                            </div>
-
-                                                <div class="col-md-4">
-
-                                                    <div class="icon-box">
-
-                                                            <i class="material-icons">flash_on
-                                                            </i>
-
-                                                                <h4>Powerful</h4>
-
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
-
-                                                    </div>
-
-                                                </div>
-
-                                                    <div class="col-md-4">
-
-                                                        <div class="icon-box">
-
-                                                            <i class="material-icons">settings</i>
-
-                                                                <h4>Easy To Customize</h4>
-
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas minima, dicta quaerat sit cupiditate eum mollitia.</p>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </fieldset>
-                    </form>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -272,11 +221,11 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active" "">
+                <div class="carousel-item active" >
                     <div class="carousel-caption d-none d-md-block text-left">
-                        <h1 class="font-weight-bolder">Headline 1</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> 
+                        <h1 class="font-weight-bolder">Unlimited movies, TV shows, and more.</h1>
+                        <p>Watch anywhere. Cancel anytime.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> 
                     </div>
                     <img class="first-slide shadow-lg" src="{% static 'images/background.jpg' %}" alt="First slide">
                     <div class="container">
@@ -286,9 +235,9 @@
                     <img class="second-slide" src="{% static 'images/background.jpg' %}" alt="Second slide">
                     <div class="container">
                         <div class="carousel-caption d-none d-md-block">
-                            <h1 class="font-weight-bolder">Another example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                            <h1 class="font-weight-bolder">Enjoy on your TV.</h1>
+                            <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+                            <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> -->
                         </div>
                     </div>
                 </div>
@@ -296,9 +245,9 @@
                     <img class="third-slide" src="{% static 'images/background.jpg' %}" alt="Third slide">
                     <div class="container">
                         <div class="carousel-caption d-none d-md-block text-right">
-                            <h1 class="font-weight-bolder">One more for good measure.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                            <h1 class="font-weight-bolder">Download your shows to watch offline.</h1>
+                            <p>Save your favorites easily and always have something to watch.</p>
+                          <!--   <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
                         </div>
                     </div>
                 </div>
@@ -385,6 +334,17 @@
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="{% static 'assets/js/holder.min.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+ <script type="text/javascript">
+    $(document).ready(function(){
+
+           $('#loginModal').modal('show')
+    });
+
+ </script>
         {% endblock footerinclude %}   
         {% endblock content %}
  
